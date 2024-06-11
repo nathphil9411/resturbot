@@ -5,8 +5,7 @@
     <title>Resturbot Chat</title>
     <style>
       body {
-        margin: 0;
-        padding-bottom: 3rem;
+        margin: auto 0;
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
           Helvetica, Arial, sans-serif;
         background-color: #f0f2f5;
@@ -23,7 +22,8 @@
         overflow-y: auto;
         padding: 1rem;
         list-style-type: none;
-        margin: 0;
+        margin: auto 0;
+        line-height: 1.4;
       }
 
       #messages > li {
@@ -36,7 +36,6 @@
 
       #messages > li.bot {
         background-color: #e1f7d5;
-        align-self: flex-start;
       }
 
       #messages > li.user {
@@ -115,11 +114,9 @@
       });
 
       function addMessage(text, sender) {
-        const item = document.createElement("li");
-        item.textContent = text;
-        item.className = sender;
-        messages.appendChild(item);
-        window.scrollTo(0, document.body.scrollHeight);
+        const item = `<li class=${sender}>${text}</li>`;
+        messages.insertAdjacentHTML("beforeend", item);
+        messages.scrollTop = messages.scrollHeight;
       }
     </script>
   </body>

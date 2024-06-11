@@ -28,9 +28,9 @@ const items = [
  * @param {Object} session - The user's session object.
  */
 const sendMenu = (socket, session) => {
-  let menu = "Please select a meal by number: \n";
+  let menu = "<b>Please select a meal by number:</b> <br>";
   items.forEach((item, index) => {
-    menu += `${index + 1}: ${item}  \n`;
+    menu += `${index + 1}: ${item}  <br>`;
   });
   socket.emit("message", { text: menu });
 };
@@ -45,7 +45,7 @@ const sendMenu = (socket, session) => {
 const handleOrderSelection = (socket, session, msg) => {
   if (session.currentOrder.length === 1) {
     socket.emit("message", {
-      text: `please you have an unfinished ${session.currentOrder[0]} order, 99 to checkout, 0 to cancel`
+      text: `please you have an unfinished ${session.currentOrder[0]} order, 99 to checkout or 0 to cancel order`
     });
     return;
   }
@@ -54,7 +54,7 @@ const handleOrderSelection = (socket, session, msg) => {
     if (index >= 0 && index < items.length) {
       session.currentOrder.push(items[index]);
       socket.emit("message", {
-        text: `${items[index]} added to your order. Press: 99 to Checkout order \n0: Cancel order`
+        text: `<b>${items[index]}</b>  has been added to your order. Press: 99 to Checkout order \n0: Cancel order`
       });
     } else {
       socket.emit("message", { text: "Invalid selection. Please try again." });

@@ -7,8 +7,7 @@ const orderController = require("./ordercontroller");
  */
 const sendInitialOptions = (socket) => {
   //initial message
-  const options =
-    "Welcome to naija resturbot, Please select an option:\n1: Place an order\n99: Checkout order\n98: See order history\n97: See current order\n0: Cancel order";
+  const options = `Welcome to <b><i>Naija Resturbot</i></b>, Please select an option:<br>\n1: Check menu and place an order<br>\n99: Checkout order <br>\n98: See order history<br>\n97: See current order<br>\n0: Cancel order`;
   socket.emit("message", { text: options });
 };
 
